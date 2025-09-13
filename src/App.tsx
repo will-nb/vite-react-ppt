@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef, forwardRef, useImperativeHandle } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useDrag } from '@use-gesture/react';
 import * as Slides from './components';
 
