@@ -1,23 +1,21 @@
-# 简化的 Dockerfile for Vite React PPT
-FROM node:18-alpine
-
-# 设置工作目录
+# Phase 1: Build the React application
+FROM node:18-alpine AS builder
 WORKDIR /app
-
-# 复制 package.json 和 package-lock.json
 COPY package*.json ./
-
-# 安装所有依赖（包括开发依赖，因为构建需要）
 RUN npm ci
-
-# 复制源代码
 COPY . .
-
-# 构建应用
 RUN npm run build
 
-# 暴露端口
-EXPOSE 3000
+# Phase 2: Serve the static files with Caddy
+FROM caddy:2-alpine
 
-# 启动应用
-CMD ["npm", "start"]
+# Copy Caddyfile to the default configuration path
+COPY Caddyfile /etc/caddy/Caddyfile
+
+# Copy the built assets from the builder stage and set the correct ownership in one step.
+# The 'caddy' user and group are provided by the official Caddy image.
+COPY --from=builder --chown=caddy:caddy /app/dist /usr/share/caddy
+
+# Explicitly set the command to run Caddy. This is inherited from the base image,
+# but being explicit is safer for production deployments.
+CMD ["caddy", "run", "--config", "/etc/caddy/Caddyfile"]

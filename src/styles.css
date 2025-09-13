@@ -1,0 +1,109 @@
+:root {
+  --primary-color: #455A64;
+  --background-color: #ECEFF1;
+  --surface-color: #FFFFFF;
+  --text-primary-color: #212121;
+  --text-secondary-color: #757575;
+  --accent-color: #B0BEC5;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-primary-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.stage-wrap {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+/* 桌面端/横屏样式 */
+@media (orientation: landscape) {
+  .stage-wrap {
+    padding: 16px;
+  }
+  .stage {
+    width: 100%;
+    max-width: 1920px;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,.1);
+    background-color: var(--surface-color);
+  }
+  .slides-container {
+    display: none; /* 竖屏容器在横屏时隐藏 */
+  }
+
+  .slides-container-landscape {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+
+  .slides-container-landscape .slide {
+    position: absolute;
+    inset: 0;
+    display: none; /* 默认隐藏所有幻灯片 */
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .slides-container-landscape .slide.active {
+    display: flex; /* 只显示激活的幻灯片 */
+    opacity: 1;
+  }
+}
+
+/* 移动端/竖屏样式 */
+/* Remove the media query wrapper, and apply styles directly to the new class */
+.portrait-scroll {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+@media (orientation: portrait) {
+  .stage {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  /* The .slides-container styles are now handled by .portrait-scroll */
+
+  .slide {
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .slides-container-landscape {
+    display: none;
+  }
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative; /* 用于页脚定位 */
+  padding: clamp(24px, 5vh, 110px) clamp(24px, 6vw, 130px);
+}

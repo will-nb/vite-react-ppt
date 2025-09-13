@@ -1,0 +1,15 @@
+/* src/components/Footer.css */
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+  box-sizing: border-box;
+  color: var(--text-secondary-color);
+  font-size: clamp(0.8rem, 1.2vw, 1rem);
+  pointer-events: none; /* Avoid interfering with mouse/touch events on the slide */
+}

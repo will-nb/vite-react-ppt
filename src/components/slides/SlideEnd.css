@@ -1,0 +1,8 @@
+.slide.end-card { background: var(--surface-color); color: var(--primary-color); text-align: center; }
+.end-card .logo { display:flex; justify-content:center; align-items:center; margin-bottom: 32px; }
+.end-card .logo .logo-card { background: var(--primary-color); padding: 20px 30px; border-radius: 16px; box-shadow: 0 6px 18px rgba(15,23,42,.06); display:inline-flex; }
+.end-card .logo img { width: clamp(100px, 12vw, 200px); }
+.end-card h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; color: var(--primary-color); margin: 0 0 12px; }
+.end-card .subtitle { font-size: clamp(1.8rem, 4vw, 3rem); color: #475569; margin: 0 0 24px; }
+.end-card .final-links { margin-top: 32px; }
+.end-card .final-links a { font-size: clamp(1rem, 1.8vw, 1.5rem); color: #FF7B54; font-weight: 700; text-decoration: none; }
