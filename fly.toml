@@ -32,4 +32,3 @@ primary_region = "hkg"  # 香港区域，适合亚洲用户访问
   memory_mb = 256
 
 [deploy]
-  release_command = "npm run build"
