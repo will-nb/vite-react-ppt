@@ -14,9 +14,9 @@ const progressSteps = [
     title: 'Tiered AI Engine for Quality & Scale',
     desc: `
       <ul>
-        <li><strong>Efficient Base Layer:</strong> Self-hosted models for speed and cost-control.</li>
-        <li><strong>Premium Quality Fallback:</strong> Top-tier APIs to guarantee user satisfaction.</li>
-        <li><strong>Future-Ready:</strong> A clear path to proprietary models and on-device AI.</li>
+        <li><strong>Efficient Base Layer:</strong> Hosting lightweight models myself is quite easy — I can do it without trouble.</li>
+        <li><strong>Premium Quality Fallback:</strong> Connecting to top-tier APIs is also so easy, I’ve already mastered it.</li>
+        <li><strong>Future-Ready:</strong> But training our own models and embedding them on mobile devices — that’s the real challenge, and I’ll need skilled engineers to join me.</li>
       </ul>
     `,
     images: ['/assets/ai.png'],
