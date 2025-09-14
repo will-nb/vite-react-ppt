@@ -5,13 +5,14 @@ import './Footer.css';
 interface FooterProps {
   slideIndex: number;
   totalSlides: number;
+  title: string;
 }
 
-const Footer: React.FC<FooterProps> = ({ slideIndex, totalSlides }) => {
+const Footer: React.FC<FooterProps> = ({ slideIndex, totalSlides, title }) => {
   return (
     <footer className="footer">
-      <span>HKSTP Pitch</span>
-      <span>{slideIndex + 1} / {totalSlides}</span>
+      <div className="slide-title">{title}</div>
+      <div className="slide-number">{`${slideIndex + 1} / ${totalSlides}`}</div>
     </footer>
   );
 };

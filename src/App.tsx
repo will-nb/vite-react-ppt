@@ -14,7 +14,17 @@ const slideComponents = [
   SlideRoadmap, SlideEnd
 ];
 
-const stepsPerSlide = [1, 3, 3, 7, 1, 3, 1, 1];
+const stepsPerSlide = [1, 3, 3, 7, 3, 3, 1, 1];
+const slideTitles = [
+  "HKSTP Pitch",          // 1/8
+  "Project Introduction", // 2/8
+  "Team Building",        // 3/8
+  "Market Analysis",      // 4/8
+  "Creator Economy",      // 5/8
+  "Core Innovations",     // 6/8
+  "Roadmap",              // 7/8
+  "Thank You & Q/A",      // 8/8
+];
 
 function App() {
   const { slideIndex, stepIndex } = useNavigation({
@@ -42,7 +52,11 @@ function App() {
             ))}
           </div>
         )}
-        <Footer slideIndex={slideIndex} totalSlides={slideComponents.length} />
+        <Footer
+          slideIndex={slideIndex}
+          totalSlides={slideComponents.length}
+          title={slideTitles[slideIndex]}
+        />
       </div>
     </div>
   );
