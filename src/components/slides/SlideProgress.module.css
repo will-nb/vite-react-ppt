@@ -104,6 +104,37 @@
   gap: 12px; /* Space between list items */
 }
 
+.heroImageLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 32px;
+  height: 100%;
+  padding: clamp(24px, 5vh, 60px) clamp(24px, 5vw, 110px); /* Vertical and horizontal padding */
+  box-sizing: border-box;
+}
+
+.heroImageLayout .content {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.heroImageLayout .desc {
+  max-width: 960px;
+  line-height: 1.6;
+}
+
+.imageBox {
+  width: 100%;
+  max-width: 1280px;
+  flex-grow: 1; /* Fill remaining vertical space */
+  background-color: #333; /* Fallback */
+  background-size: cover;
+  background-position: center;
+  border-radius: 24px; /* Consistent with existing style */
+}
+
 .image {
   width: 100%; /* Ensure image fits within the padding box */
   max-width: 100%;

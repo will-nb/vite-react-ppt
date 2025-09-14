@@ -21,6 +21,24 @@ const progressSteps = [
     `,
     images: ['/assets/ai.png'],
   },
+  {
+    type: 'heroImage',
+    title: 'Two Key Roles',
+    desc: 'Our first hires: an all-round Hong Kong admin and a European email support specialist. Both are also UP hosts and card pack creators — employees who live the product.',
+    images: ['/assets/two_key_roles.png'],
+  },
+  {
+    type: 'heroImage',
+    title: 'Double Dream — Inside the Company',
+    desc: 'They grow with Granostack, taking central roles as the company builds the next generation learning tool.',
+    images: ['/assets/in_company.png'],
+  },
+  {
+    type: 'heroImage',
+    title: 'Double Dream — As Creators',
+    desc: 'They shine as creators and influencers, leading their own communities while staying close to our mission.',
+    images: ['/assets/as_creators.png'],
+  },
 ];
 
 const SlideProgress: React.FC<SlideProps> = ({ step = 0, className = '' }) => {
@@ -57,6 +75,20 @@ const SlideProgress: React.FC<SlideProps> = ({ step = 0, className = '' }) => {
             <div className={styles.imageContainer}>
               <img src={currentStep.images[0]} alt="AI Strategy Diagram" className={styles.image} />
             </div>
+          </div>
+        );
+      case 'heroImage':
+        return (
+          <div className={styles.heroImageLayout}>
+            <div className={styles.content}>
+              <h2 className={styles.title}>{currentStep.title}</h2>
+              <p className={styles.desc}>{currentStep.desc as string}</p>
+            </div>
+            <div
+              className={styles.imageBox}
+              style={{ backgroundImage: `url(${currentStep.images[0]})` }}
+              aria-label={currentStep.title}
+            />
           </div>
         );
       default:
