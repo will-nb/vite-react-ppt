@@ -13,15 +13,17 @@ const quarters = [
 const SlideRoadmap: React.FC<SlideProps> = ({ className }) => {
   return (
     <div className={`slide roadmap ${className || ''}`}>
-      <h2>Roadmap</h2>
-      <div className="timeline">
-        {quarters.map((q, i) => (
-          <div className="quarter" key={i}>
-            <div className="milestone">{q.milestone}</div>
-            <h3>{q.title}</h3>
-            <ul>{q.tasks.map((t, ti) => <li key={ti}>{t}</li>)}</ul>
-          </div>
-        ))}
+      <div className="slide-content">
+        <h2>Roadmap</h2>
+        <div className="timeline">
+          {quarters.map((q, i) => (
+            <div className="quarter" key={i}>
+              <div className="milestone">{q.milestone}</div>
+              <h3>{q.title}</h3>
+              <ul>{q.tasks.map((t, ti) => <li key={ti}>{t}</li>)}</ul>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

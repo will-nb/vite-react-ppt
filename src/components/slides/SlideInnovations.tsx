@@ -81,25 +81,27 @@ const SlideInnovations: React.FC<SlideProps> = ({ step, className }) => {
 
   return (
     <div className={`slide innov ${isVerticalLayout ? 'vertical-layout' : ''} ${className || ''}`}>
-      {isVerticalLayout ? (
-        <>
-          {phoneContent}
-          <div className="content">
-            {headContent}
-            {pointsContent}
-          </div>
-        </>
-      ) : (
-        <>
-          {headContent}
-          <div className="grid">
+      <div className="slide-content">
+        {isVerticalLayout ? (
+          <>
             {phoneContent}
-            <div>
+            <div className="content">
+              {headContent}
               {pointsContent}
             </div>
-          </div>
-        </>
-      )}
+          </>
+        ) : (
+          <>
+            {headContent}
+            <div className="grid">
+              {phoneContent}
+              <div>
+                {pointsContent}
+              </div>
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

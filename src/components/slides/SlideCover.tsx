@@ -7,7 +7,9 @@ import { SlideProps } from './types';
 const SlideCover: React.FC<SlideProps> = ({ className }) => {
   return (
     <div className={`slide cover ${className || ''}`}>
-      <img src="/assets/cover.png" alt="Granostack Cover" className="cover-image" />
+      <div className="slide-content">
+        <img src="/assets/cover.png" alt="Granostack Cover" className="cover-image" />
+      </div>
     </div>
   );
 };

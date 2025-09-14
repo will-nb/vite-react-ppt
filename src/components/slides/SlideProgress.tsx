@@ -1,45 +1,45 @@
-// src/components/slides/SlideProgress.tsx
 import React from 'react';
-import './SlideProgress.css';
+import styles from './SlideProgress.module.css';
 import { SlideProps } from './types';
 
 const progressSteps = [
   {
-    title: "What’s done · what’s next",
-    points: ['Core flows ready', 'granostack.com/demo'],
-    img: '/assets/granostack.PNG',
+    title: 'Full-Stack Craftsmanship',
+    desc: 'We deliver a seamless, native experience across <strong>iOS, Android, macOS, Windows, and Linux</strong> from a single, elegant codebase.',
+    images: ['/assets/change-avatar.gif', '/assets/macos-app.png']
   },
-  {
-    title: 'See progress · try the demo',
-    points: ['Progress updates', 'Demo builds'],
-    img: '/assets/granostack-logo.svg',
-  },
-  {
-    title: 'Hiring admin · streamline ops',
-    points: ['Admin after launch', 'Daily operations'],
-    img: '/assets/grok.PNG',
-  },
-  {
-    title: 'Creator decks · community growth',
-    points: ['Decks from creators', 'Free credits & incentives'],
-    img: '/assets/obsidian.PNG',
-  },
+  // Data for other steps can be added here later
 ];
 
-const SlideProgress: React.FC<SlideProps> = ({ step, className }) => {
-  const { title, points } = progressSteps[step] || progressSteps[0];
+const SlideProgress: React.FC<SlideProps> = ({ step = 0, className = '' }) => {
+  const currentStep = progressSteps[step] || progressSteps[0];
 
   return (
-    <div className={`slide progress ${className || ''}`}>
-      <h2>{title}</h2>
-      <p className="sub">We build fast, show progress, and keep shipping.</p>
-      <ul className="bullets">
-        {points.map((point, index) => <li key={index}>{point}</li>)}
-      </ul>
-      <div className="hero">
-        {progressSteps.map((s, index) => (
-          <img key={index} src={s.img} alt="" className={`progress-img ${index === step ? 'active' : ''}`} />
-        ))}
+    <div className={`slide ${className}`} data-testid="slide-progress-container">
+      <div className="slide-content">
+        {step === 0 ? (
+          <div className={styles.layoutGrid}>
+            <div className={styles.leftColumn}>
+              <div className={styles.content}>
+                <h2 className={styles.title}>{currentStep.title}</h2>
+                <p className={styles.desc} dangerouslySetInnerHTML={{ __html: currentStep.desc }} />
+              </div>
+              <div className={styles.imageContainer}>
+                <img src={currentStep.images[1]} alt="macOS app screenshot" className={styles.image} />
+              </div>
+            </div>
+            <div className={styles.rightColumn}>
+              <div className={styles.imageContainer}>
+                <img src={currentStep.images[0]} alt="Avatar changing GIF" className={styles.image} />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.defaultLayout}>
+            <h2>Default Layout</h2>
+            <p>Content for other steps.</p>
+          </div>
+        )}
       </div>
     </div>
   );

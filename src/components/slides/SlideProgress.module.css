@@ -1,0 +1,69 @@
+/* Fresh start for SlideProgress.module.css */
+
+.layoutGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+  gap: clamp(24px, 4vw, 48px);
+  width: 100%;
+  height: 100%;
+}
+
+.leftColumn {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 24px;
+  min-height: 0;
+}
+
+.rightColumn {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin: 0 0 8px;
+  color: var(--primary-color);
+}
+
+.desc {
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
+  color: #475569;
+  margin: 12px 0 0;
+  line-height: 1.6;
+}
+
+.imageContainer {
+  flex: 1;
+  min-height: 0;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(2,6,23,.08);
+  padding: 32px; /* Increased padding to shrink the images */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.defaultLayout {
+  /* Styles for other steps */
+  text-align: center;
+}
