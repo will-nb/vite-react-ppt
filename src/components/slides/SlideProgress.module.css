@@ -59,13 +59,25 @@
   padding: 16px; /* Provides internal spacing for the image */
 }
 
-.leftColumn .imageContainer {
-  flex: 1; /* Apply flex-grow ONLY to the left column's container */
-  max-height: calc(100vh - 2 * clamp(24px, 5vh, 110px) - 100px); /* Calculated max height */
+.imageContainer img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* This ensures the image is fully visible without being cropped, maintaining its aspect ratio */
 }
 
 .rightColumn .imageContainer {
-  max-height: calc(100vh - 2 * clamp(24px, 5vh, 110px) - 100px); /* Identical calculated max height */
+  height: 100%; /* This forces the container to fill the available vertical space defined by the grid, not by its content. */
+}
+
+.leftColumn .imageContainer {
+  /*
+    This is the definitive fix. By making the image container a flex item that can grow,
+    it will automatically fill the remaining vertical space in the left column
+    after the text content has taken its required space.
+    'min-height: 0' is a crucial flexbox fix to prevent the image from overflowing its container.
+  */
+  flex-grow: 1;
+  min-height: 0; 
 }
 
 .image {
