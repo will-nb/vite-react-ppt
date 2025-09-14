@@ -46,7 +46,8 @@
   box-shadow: 0 10px 30px rgba(2,6,23,.08);
   overflow: hidden;
   position: relative;
-  height: clamp(300px, 42vw, 820px);
+  height: clamp(300px, 45vw, 820px); /* Increased from 42vw to make it taller */
+  padding: 16px; /* Add padding to create space around the images */
 }
 
 .story .screen .story-img {

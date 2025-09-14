@@ -7,6 +7,7 @@
   gap: clamp(24px, 4vw, 48px);
   width: 100%;
   height: 100%;
+  align-items: end; /* Aligns grid items to the bottom, fixing the "uneven legs" issue */
 }
 
 .leftColumn {
@@ -17,6 +18,7 @@
   justify-content: flex-start;
   gap: 24px;
   min-height: 0;
+  height: 100%; /* Ensure it takes up full grid area height */
 }
 
 .rightColumn {
@@ -25,6 +27,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 0; /* Add min-height to constrain flex item */
+  height: 100%; /* Ensure it takes up full grid area height */
 }
 
 .content {
@@ -45,18 +49,27 @@
 }
 
 .imageContainer {
-  flex: 1;
-  min-height: 0;
-  background: #ffffff;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(2,6,23,.08);
-  padding: 32px; /* Increased padding to shrink the images */
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5; /* Reverted from the 'red' debug color */
+  border-radius: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 16px; /* Provides internal spacing for the image */
+}
+
+.leftColumn .imageContainer {
+  flex: 1; /* Apply flex-grow ONLY to the left column's container */
+  max-height: calc(100vh - 2 * clamp(24px, 5vh, 110px) - 100px); /* Calculated max height */
+}
+
+.rightColumn .imageContainer {
+  max-height: calc(100vh - 2 * clamp(24px, 5vh, 110px) - 100px); /* Identical calculated max height */
 }
 
 .image {
+  width: 100%; /* Ensure image fits within the padding box */
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;

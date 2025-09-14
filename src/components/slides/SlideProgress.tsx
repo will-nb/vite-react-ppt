@@ -24,12 +24,12 @@ const SlideProgress: React.FC<SlideProps> = ({ step = 0, className = '' }) => {
                 <h2 className={styles.title}>{currentStep.title}</h2>
                 <p className={styles.desc} dangerouslySetInnerHTML={{ __html: currentStep.desc }} />
               </div>
-              <div className={styles.imageContainer}>
+              <div className={styles.imageContainer} data-testid="image-container-left">
                 <img src={currentStep.images[1]} alt="macOS app screenshot" className={styles.image} />
               </div>
             </div>
             <div className={styles.rightColumn}>
-              <div className={styles.imageContainer}>
+              <div className={styles.imageContainer} data-testid="image-container-right">
                 <img src={currentStep.images[0]} alt="Avatar changing GIF" className={styles.image} />
               </div>
             </div>
