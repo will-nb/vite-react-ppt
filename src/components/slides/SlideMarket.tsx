@@ -28,14 +28,28 @@ const SlideMarket: React.FC<SlideProps> = ({ step, className }) => {
     return () => chart.destroy();
   }, [step]);
 
-  const serveListItems = [
-    { title: 'Students', desc: 'Exam preparation and language learning' },
-    { title: 'Professionals', desc: 'Career skills and certification' },
-    { title: 'Creators', desc: 'Share expertise and monetize knowledge' },
-    { title: 'Lifelong learners', desc: 'Personal growth and hobbies' },
+  const served = [
+    {
+      name: 'Students',
+      desc: 'Deepen understanding of complex subjects and ace exams.',
+      img: '/assets/student.png'
+    },
+    {
+      name: 'Content Creators',
+      desc: 'Build a personal knowledge base and create high-quality content.',
+      img: '/assets/creator.png'
+    },
+    {
+      name: 'Professionals',
+      desc: 'Stay ahead of the curve in your field and drive innovation.',
+      img: '/assets/professional.png'
+    },
+    {
+      name: 'Lifelong Learners',
+      desc: 'Explore new topics and expand your horizons.',
+      img: '/assets/lifelong_learners.png'
+    },
   ];
-
-  const audienceImages = ['Student', 'Professional', 'Creator', 'Learner'];
 
   return (
     <div className={`slide market ${className || ''}`}>
@@ -70,18 +84,18 @@ const SlideMarket: React.FC<SlideProps> = ({ step, className }) => {
         <div className="serve-view">
           <div className="serve-left">
             <ul className="serve-list">
-              {serveListItems.map((item, i) => (
+              {served.map((item, i) => (
                 <li key={i} className={step >= i + 2 ? 'show' : ''}>
-                  <strong>{item.title}</strong>
+                  <strong>{item.name}</strong>
                   <span>{item.desc}</span>
                 </li>
               ))}
             </ul>
           </div>
           <div className="serve-right">
-            {audienceImages.map((seed, i) => (
+            {served.map((item, i) => (
               <figure key={i} className={step >= i + 2 ? 'show' : ''}>
-                <img src={`https://api.dicebear.com/7.x/adventurer/svg?seed=${seed}`} alt={seed} />
+                <img src={item.img} alt={item.name} />
               </figure>
             ))}
           </div>

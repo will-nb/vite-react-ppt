@@ -17,6 +17,7 @@ html, body, #root {
   color: var(--text-primary-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Globally prevent horizontal scrolling */
 }
 
 .stage-wrap {
@@ -72,8 +73,8 @@ html, body, #root {
 .portrait-scroll {
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  overflow-y: auto; /* Change to auto for natural scrolling */
+  scroll-snap-type: none; /* Disable scroll snapping */
 }
 
 @media (orientation: portrait) {
@@ -85,10 +86,20 @@ html, body, #root {
   
   /* The .slides-container styles are now handled by .portrait-scroll */
 
+  .portrait-scroll .slide {
+    height: auto; /* Allow slide height to be determined by its content */
+    min-height: 80vh; /* Ensure smaller slides still have a decent height */
+    margin: 16px; /* Add margin to create space between slides */
+    width: auto; /* Let the margin define the width */
+    border-radius: 18px; /* Give slides a card-like appearance */
+    box-shadow: 0 8px 24px rgba(15,23,42,.08);
+    background-color: var(--surface-color);
+  }
+
   .slide {
     width: 100%;
     height: 100%;
-    scroll-snap-align: start;
+    scroll-snap-align: none; /* Disable scroll snap alignment */
     scroll-snap-stop: always;
   }
   .slides-container-landscape {
@@ -106,4 +117,10 @@ html, body, #root {
   align-items: center;
   position: relative; /* 用于页脚定位 */
   padding: clamp(24px, 5vh, 110px) clamp(24px, 6vw, 130px);
+}
+
+/* Special background for cover slide */
+.stage-wrap.cover-mode,
+.stage-wrap.cover-mode .stage {
+  background-color: #0F1718;
 }

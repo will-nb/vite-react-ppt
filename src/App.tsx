@@ -3,18 +3,18 @@ import { useMediaQuery } from './hooks/useMediaQuery';
 import Footer from './components/Footer';
 import {
   SlideCover, SlideStory, SlideProgress, SlideMarket,
-  SlideCreator, SlideInnovQA, SlideInnovMemo, SlideInnovRewards,
+  SlideCreator, SlideInnovations,
   SlideRoadmap, SlideEnd
 } from './components';
 import './styles.css';
 
 const slideComponents = [
   SlideCover, SlideStory, SlideProgress, SlideMarket,
-  SlideCreator, SlideInnovQA, SlideInnovMemo, SlideInnovRewards,
+  SlideCreator, SlideInnovations,
   SlideRoadmap, SlideEnd
 ];
 
-const stepsPerSlide = [1, 3, 4, 7, 1, 1, 1, 1, 1, 1];
+const stepsPerSlide = [1, 3, 4, 7, 1, 3, 1, 1];
 
 function App() {
   const { slideIndex, stepIndex } = useNavigation({
@@ -26,7 +26,7 @@ function App() {
   const CurrentSlideComponent = slideComponents[slideIndex];
 
   return (
-    <div className="stage-wrap">
+    <div className={`stage-wrap ${slideIndex === 0 ? 'cover-mode' : ''}`}>
       <div className="stage">
         {isLandscape ? (
           <div className="slides-container-landscape" data-testid="landscape-container">

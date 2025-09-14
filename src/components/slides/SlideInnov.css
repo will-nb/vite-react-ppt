@@ -1,13 +1,40 @@
-.slide.innov { background: var(--surface-color); color: var(--primary-color); }
+.slide.innov { background: var(--surface-color); color: var(--primary-color); justify-content: flex-start; }
 .innov .head h2 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 0 0 8px; color: var(--primary-color); }
 .innov .head .lead { font-size: clamp(1rem, 1.8vw, 1.5rem); color: #475569; margin: 0; }
 .innov .tagline { margin-top: 18px; display:flex; gap: 10px; flex-wrap: wrap; }
 .innov .tagline .tag { display:inline-block; font-size: 14px; color:#334155; background:#f1f5f9; border:1px solid #e2e8f0; border-radius:999px; padding:6px 10px; }
 .innov .tagline .tag.alt { background: #fff7ed; border-color: #fed7aa; color: #9a3412; }
-.innov .grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px, 3vw, 56px); align-items: center; padding-top: 24px; width: 100%;}
-.innov .phone { background: #ffffff; border: 1px solid #eef2f7; border-radius: 18px; box-shadow: 0 10px 30px rgba(2,6,23,.08); padding: 20px; }
-.innov .phone .screen { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 20px; padding: 18px; display:flex; align-items:center; justify-content:center; min-height: 520px; }
-.innov .phone .screen img { max-width: 100%; height: auto; display:block; object-fit: contain; }
+.innov .grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(24px, 3vw, 56px); align-items: center; padding-top: 24px; width: 100%; flex: 1; min-height: 0; }
+.innov .phone { background: #ffffff; border: 1px solid #eef2f7; border-radius: 18px; box-shadow: 0 10px 30px rgba(2,6,23,.08); padding: 20px; max-width: 520px; width: 100%; margin: 0 auto; max-height: 100%; display: flex; flex-direction: column; }
+.innov .phone .screen { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 20px; padding: 18px; display:flex; align-items:center; justify-content:center; flex: 1; min-height: 0; }
+.innov .phone .screen img { max-width: 100%; max-height: 100%; display:block; object-fit: contain; }
 .innov .points { list-style: none; padding-left: 0; margin: 0; }
 .innov .points li { font-size: clamp(1rem, 1.8vw, 1.5rem); color: #334155; margin: 12px 0; position: relative; padding-left: 20px; }
+.innov .points li::before { content: '✓'; position: absolute; left: 0; color: #3CCF91; font-weight: 700; }
 .innov .points li span { font-weight: 700; color: var(--primary-color); }
+
+/* New layout for slide with tall image */
+.slide.innov.vertical-layout {
+  flex-direction: row;
+  gap: clamp(32px, 5vw, 80px);
+}
+
+.innov.vertical-layout .phone {
+  flex: 1 1 30%;
+  max-width: 300px;
+  height: auto;
+  max-height: 80%;
+  margin: 0;
+}
+
+.innov.vertical-layout .phone .screen {
+  overflow: hidden;
+}
+
+.innov.vertical-layout .content {
+  flex: 1 1 70%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

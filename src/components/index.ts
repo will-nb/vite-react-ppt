@@ -1,23 +1,8 @@
-import SlideCover from './slides/SlideCover';
-import SlideStory from './slides/SlideStory';
-import SlideProgress from './slides/SlideProgress';
-import SlideMarket from './slides/SlideMarket';
-import SlideCreator from './slides/SlideCreator';
-import SlideInnovQA from './slides/SlideInnovQA';
-import SlideInnovMemo from './slides/SlideInnovMemo';
-import SlideInnovRewards from './slides/SlideInnovRewards';
-import SlideRoadmap from './slides/SlideRoadmap';
-import SlideEnd from './slides/SlideEnd';
-
-export {
-  SlideCover,
-  SlideStory,
-  SlideProgress,
-  SlideMarket,
-  SlideCreator,
-  SlideInnovQA,
-  SlideInnovMemo,
-  SlideInnovRewards,
-  SlideRoadmap,
-  SlideEnd,
-};
+export { default as SlideCover } from './slides/SlideCover';
+export { default as SlideStory } from './slides/SlideStory';
+export { default as SlideProgress } from './slides/SlideProgress';
+export { default as SlideMarket } from './slides/SlideMarket';
+export { default as SlideCreator } from './slides/SlideCreator';
+export { default as SlideInnovations } from './slides/SlideInnovations';
+export { default as SlideRoadmap } from './slides/SlideRoadmap';
+export { default as SlideEnd } from './slides/SlideEnd';
