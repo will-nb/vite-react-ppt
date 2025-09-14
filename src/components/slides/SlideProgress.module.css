@@ -80,6 +80,30 @@
   min-height: 0; 
 }
 
+.centeredLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  height: 100%;
+  text-align: center;
+}
+
+.centeredLayout .imageContainer {
+  max-width: 800px; /* Constrain the max width of the diagram */
+  width: 100%;
+}
+
+.centeredLayout .desc ul {
+  list-style-type: none; /* Remove default bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Space between list items */
+}
+
 .image {
   width: 100%; /* Ensure image fits within the padding box */
   max-width: 100%;
