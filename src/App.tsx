@@ -14,7 +14,7 @@ const slideComponents = [
   SlideRoadmap, SlideEnd
 ];
 
-const stepsPerSlide = [1, 3, 5, 7, 1, 3, 1, 1];
+const stepsPerSlide = [1, 3, 3, 7, 1, 3, 1, 1];
 
 function App() {
   const { slideIndex, stepIndex } = useNavigation({

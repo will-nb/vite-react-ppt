@@ -22,22 +22,14 @@ const progressSteps = [
     images: ['/assets/ai.png'],
   },
   {
-    type: 'heroImage',
-    title: 'Two Key Roles',
-    desc: 'Our first hires: an all-round Hong Kong admin and a European email support specialist. Both are also UP hosts and card pack creators — employees who live the product.',
-    images: ['/assets/two_key_roles.png'],
-  },
-  {
-    type: 'heroImage',
-    title: 'Double Dream — Inside the Company',
-    desc: 'They grow with Granostack, taking central roles as the company builds the next generation learning tool.',
-    images: ['/assets/in_company.png'],
-  },
-  {
-    type: 'heroImage',
-    title: 'Double Dream — As Creators',
-    desc: 'They shine as creators and influencers, leading their own communities while staying close to our mission.',
-    images: ['/assets/as_creators.png'],
+    type: 'hiring',
+    title: 'Hiring Plan: Two Roles, One Double Dream',
+    subtitle: 'Our first hires are power users. Inside the company they take ownership; as creators they keep building their own audiences.',
+    images: [
+      '/assets/two_key_roles.png',   // Left main image
+      '/assets/in_company.png',      // Right top image
+      '/assets/as_creators.png',     // Right bottom image
+    ],
   },
 ];
 
@@ -77,18 +69,22 @@ const SlideProgress: React.FC<SlideProps> = ({ step = 0, className = '' }) => {
             </div>
           </div>
         );
-      case 'heroImage':
+      case 'hiring':
         return (
-          <div className={styles.heroImageLayout}>
-            <div className={styles.content}>
-              <h2 className={styles.title}>{currentStep.title}</h2>
-              <p className={styles.desc}>{currentStep.desc as string}</p>
+          <div className={styles.hiringLayout}>
+            <div className={styles.hiringHeader}>
+              <h1 className={styles.hiringTitle}>{currentStep.title}</h1>
+              <p className={styles.hiringSubtitle}>{currentStep.subtitle}</p>
             </div>
-            <div
-              className={styles.imageBox}
-              style={{ backgroundImage: `url(${currentStep.images[0]})` }}
-              aria-label={currentStep.title}
-            />
+            <div className={styles.hiringGridNew}>
+              <div className={styles.leftImageContainer}>
+                <img src={currentStep.images[0]} alt="Two key roles" />
+              </div>
+              <div className={styles.rightImageContainer}>
+                <img src={currentStep.images[1]} alt="Growth inside the company" />
+                <img src={currentStep.images[2]} alt="Growth as a creator" />
+              </div>
+            </div>
           </div>
         );
       default:

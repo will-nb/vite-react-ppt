@@ -104,35 +104,59 @@
   gap: 12px; /* Space between list items */
 }
 
-.heroImageLayout {
+/* --- Hiring Step Styles --- */
+
+.hiringLayout {
+  width: 100%;
+  height: 100%;
+  padding: clamp(24px, 5vh, 60px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 32px;
-  height: 100%;
-  padding: clamp(24px, 5vh, 60px) clamp(24px, 5vw, 110px); /* Vertical and horizontal padding */
-  box-sizing: border-box;
 }
 
-.heroImageLayout .content {
-  text-align: center;
-  flex-shrink: 0;
+.hiringTitle {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin: 0 0 10px;
 }
 
-.heroImageLayout .desc {
-  max-width: 960px;
-  line-height: 1.6;
+.hiringSubtitle {
+  margin: 0 0 22px;
+  color: var(--text-muted);
+  max-width: 80ch;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
 }
 
-.imageBox {
+.hiringGridNew {
+  flex-grow: 1; /* Allow grid to fill remaining vertical space */
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 18px;
+  min-height: 0; /* Important for flex + grid children */
+}
+
+.leftImageContainer, .rightImageContainer {
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.leftImageContainer {
   width: 100%;
-  max-width: 1280px;
-  flex-grow: 1; /* Fill remaining vertical space */
-  background-color: #333; /* Fallback */
-  background-size: cover;
-  background-position: center;
-  border-radius: 24px; /* Consistent with existing style */
+  height: 100%;
+}
+
+.rightImageContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  height: 100%;
+}
+
+.leftImageContainer img, .rightImageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #333; /* Dark background for images */
 }
 
 .image {
