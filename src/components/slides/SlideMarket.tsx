@@ -15,10 +15,10 @@ const SlideMarket: React.FC<SlideProps> = ({ step, className }) => {
     const chart = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: step < 1 ? ['Mobile learning'] : ['Others', 'Duolingo'],
+        labels: ['Others', 'Duolingo'],
         datasets: [{
-          data: step < 1 ? [100] : [99.375, 0.625],
-          backgroundColor: step < 1 ? ['#3CCF91'] : ['#3CCF91', '#FF7B54'],
+          data: [99.375, 0.625],
+          backgroundColor: ['#3CCF91', '#FF7B54'],
           borderWidth: 0
         }]
       },
@@ -55,38 +55,38 @@ const SlideMarket: React.FC<SlideProps> = ({ step, className }) => {
     <div className={`slide market ${className || ''}`}>
       <div className="slide-content">
         <h2 className="anim-fade">
-          {step < 2 && 'Mobile learning market'}
-          {step >= 2 && step <= 5 && 'Who we serve'}
-          {step >= 6 && 'Pricing & rewards'}
+          {step < 1 && 'Mobile learning market'}
+          {step >= 1 && step <= 4 && 'Who we serve'}
+          {step >= 5 && 'Pricing & rewards'}
         </h2>
 
         {/* Use conditional rendering (&&) to completely remove elements from DOM */}
         
-        {step < 2 && (
+        {step < 1 && (
           <div className="market-view">
             <div className="chart-card">
               <div className="chart-container"><canvas id="marketPie"></canvas></div>
               <div className="legend">
                 <span><span className="dot" style={{ background: '#3CCF91' }}></span>Mobile learning · $80B</span>
-                {step === 1 && <span><span className="dot" style={{ background: '#FF7B54' }}></span>Duolingo · $0.5B</span>}
+                <span><span className="dot" style={{ background: '#FF7B54' }}></span>Duolingo · $0.5B</span>
               </div>
             </div>
             <div className="notes">
               <ul>
                 <li>~$80B market</li>
                 <li>Room to grow</li>
-                {step === 1 && <><li>Duolingo ~$0.5B</li><li>Share ~0.6%</li></>}
+                <li>Duolingo ~$0.5B</li><li>Share ~0.6%</li>
               </ul>
             </div>
           </div>
         )}
 
-        {step >= 2 && step <= 5 && (
+        {step >= 1 && step <= 4 && (
           <div className="serve-view">
             <div className="serve-left">
               <ul className="serve-list">
                 {served.map((item, i) => (
-                  <li key={i} className={step >= i + 2 ? 'show' : ''}>
+                  <li key={i} className={step >= i + 1 ? 'show' : ''}>
                     <strong>{item.name}</strong>
                     <span>{item.desc}</span>
                   </li>
@@ -95,7 +95,7 @@ const SlideMarket: React.FC<SlideProps> = ({ step, className }) => {
             </div>
             <div className="serve-right">
               {served.map((item, i) => (
-                <figure key={i} className={step >= i + 2 ? 'show' : ''}>
+                <figure key={i} className={step >= i + 1 ? 'show' : ''}>
                   <img src={item.img} alt={item.name} />
                 </figure>
               ))}
@@ -103,8 +103,8 @@ const SlideMarket: React.FC<SlideProps> = ({ step, className }) => {
           </div>
         )}
 
-        {/* Step 6: Pricing */}
-        {step >= 6 && (
+        {/* Step 5: Pricing */}
+        {step >= 5 && (
           <div className="pricing-view">
             <div className="pricing-wrap">
               {/* Free Plan */}

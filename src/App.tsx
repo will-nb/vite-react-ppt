@@ -3,27 +3,26 @@ import { useMediaQuery } from './hooks/useMediaQuery';
 import Footer from './components/Footer';
 import {
   SlideCover, SlideStory, SlideProgress, SlideMarket,
-  SlideCreator, SlideInnovations,
+  SlideCreator,
   SlideRoadmap, SlideEnd
 } from './components';
 import './styles.css';
 
 const slideComponents = [
   SlideCover, SlideStory, SlideProgress, SlideMarket,
-  SlideCreator, SlideInnovations,
+  SlideCreator,
   SlideRoadmap, SlideEnd
 ];
 
-const stepsPerSlide = [1, 3, 3, 7, 3, 3, 1, 1];
+const stepsPerSlide = [1, 3, 3, 6, 3, 1, 1];
 const slideTitles = [
-  "HKSTP Pitch",          // 1/8
-  "Project Introduction", // 2/8
-  "Team Building",        // 3/8
-  "Market Analysis",      // 4/8
-  "Creator Economy",      // 5/8
-  "Core Innovations",     // 6/8
-  "Roadmap",              // 7/8
-  "Thank You & Q/A",      // 8/8
+  "HKSTP Pitch",          // 1/7
+  "Project Introduction", // 2/7
+  "Team Building",        // 3/7
+  "Market Analysis",      // 4/7
+  "Creator Economy",      // 5/7
+  "Roadmap",              // 6/7
+  "Thank You & Q/A",      // 7/7
 ];
 
 function App() {
