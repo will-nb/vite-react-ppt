@@ -68,45 +68,6 @@ html, body, #root {
   }
 }
 
-/* 移动端/竖屏样式 */
-/* Remove the media query wrapper, and apply styles directly to the new class */
-.portrait-scroll {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto; /* Change to auto for natural scrolling */
-  scroll-snap-type: none; /* Disable scroll snapping */
-}
-
-@media (orientation: portrait) {
-  .stage {
-    width: 100%;
-    height: 100%;
-    position: relative;
-  }
-  
-  /* The .slides-container styles are now handled by .portrait-scroll */
-
-  .portrait-scroll .slide {
-    height: auto; /* Allow slide height to be determined by its content */
-    min-height: 80vh; /* Ensure smaller slides still have a decent height */
-    margin: 16px; /* Add margin to create space between slides */
-    width: auto; /* Let the margin define the width */
-    border-radius: 18px; /* Give slides a card-like appearance */
-    box-shadow: 0 8px 24px rgba(15,23,42,.08);
-    background-color: var(--surface-color);
-  }
-
-  .slide {
-    width: 100%;
-    height: 100%;
-    scroll-snap-align: none; /* Disable scroll snap alignment */
-    scroll-snap-stop: always;
-  }
-  .slides-container-landscape {
-    display: none;
-  }
-}
-
 .slide {
   width: 100%;
   height: 100%;
@@ -129,4 +90,43 @@ html, body, #root {
 .stage-wrap.cover-mode,
 .stage-wrap.cover-mode .stage {
   background-color: #0F1718;
+}
+
+/* Force landscape orientation */
+@media (orientation: portrait) {
+  html {
+    /* Rotate the entire page */
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    /* Adjust width and height */
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+}
+
+.orientation-prompt {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  color: white;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+@media (orientation: portrait) {
+  .orientation-prompt {
+    display: flex;
+    flex-direction: column;
+  }
 }

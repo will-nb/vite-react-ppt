@@ -17,7 +17,7 @@ const SlideMarket: React.FC<SlideProps> = ({ step, className }) => {
       data: {
         labels: ['Others', 'Duolingo'],
         datasets: [{
-          data: [99.375, 0.625],
+          data: [99.13, 0.87],
           backgroundColor: ['#3CCF91', '#FF7B54'],
           borderWidth: 0
         }]
@@ -55,7 +55,7 @@ const SlideMarket: React.FC<SlideProps> = ({ step, className }) => {
     <div className={`slide market ${className || ''}`}>
       <div className="slide-content">
         <h2 className="anim-fade">
-          {step < 1 && 'Mobile learning market'}
+          {/* Title for step < 1 is now moved into the component's own view */}
           {step >= 1 && step <= 4 && 'Who we serve'}
           {step >= 5 && 'Pricing & rewards'}
         </h2>
@@ -67,15 +67,16 @@ const SlideMarket: React.FC<SlideProps> = ({ step, className }) => {
             <div className="chart-card">
               <div className="chart-container"><canvas id="marketPie"></canvas></div>
               <div className="legend">
-                <span><span className="dot" style={{ background: '#3CCF91' }}></span>Mobile learning · $80B</span>
-                <span><span className="dot" style={{ background: '#FF7B54' }}></span>Duolingo · $0.5B</span>
+                <span><span className="dot" style={{ background: '#3CCF91' }}></span>Mobile learning · $86.4B</span>
+                <span><span className="dot" style={{ background: '#FF7B54' }}></span>Duolingo · $748M</span>
               </div>
             </div>
             <div className="notes">
-              <ul>
-                <li>~$80B market</li>
-                <li>Room to grow</li>
-                <li>Duolingo ~$0.5B</li><li>Share ~0.6%</li>
+              <h3 className="notes-title">Mobile learning market</h3>
+              <ul className="notes-list">
+                <li>Global mobile learning reached <strong>$86.4B in 2024</strong>.</li>
+                <li>Even the #1 app, Duolingo, made <strong>$748M</strong> — <strong>&lt;1%</strong> share.</li>
+                <li className="summary">The market is far from saturated.</li>
               </ul>
             </div>
           </div>

@@ -5,20 +5,30 @@ import { SlideProps } from './types';
 
 const storySteps = [
   {
-    title: 'Notes don’t stick',
-    points: ['Notion / Obsidian', 'Forgotten later'],
+    title: 'Why Our Notes Fail Us',
+    points: [
+      'We pour our knowledge into great tools like Notion and Obsidian.',
+      'But a year later, that knowledge is often lost and forgotten.'
+    ],
     img: '/assets/obsidian.PNG',
     imgAlt: 'Obsidian notes'
   },
   {
-    title: 'AI without context',
-    points: ['Ask LLMs', 'Generic answers'],
+    title: 'The Problem with Generic AI',
+    points: [
+      'So when we need real insights, we turn to AI instead of our own notes.',
+      'But if everyone is using the same AI, where is our personal edge?'
+    ],
     img: '/assets/grok.PNG',
     imgAlt: 'Ask AI'
   },
   {
-    title: 'Make learning stick',
-    points: ['Capture · Practice · Review', 'Personal context'],
+    title: 'The Granostack Approach',
+    points: [
+      '<strong>Capture on the go:</strong> Instantly turn a copy, photo, or voice memo into a knowledge card.',
+      '<strong>Context-aware AI:</strong> Your personal knowledge base empowers the AI, giving you answers that are truly yours.',
+      '<strong>Tiered Learning:</strong> Master key info with review decks, organized by tiers: Familiar, Proficient, and Verbatim.'
+    ],
     img: '/assets/output.gif',
     imgAlt: 'Granostack'
   }
@@ -35,7 +45,7 @@ const SlideStory: React.FC<SlideProps> = ({ step, className }) => {
             <h2>{title}</h2>
             <ul className="points">
               {points.map((point, index) => (
-                <li key={index}>{point}</li>
+                <li key={index} dangerouslySetInnerHTML={{ __html: point }} />
               ))}
             </ul>
           </div>

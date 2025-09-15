@@ -30,34 +30,30 @@ function App() {
     slideCount: slideComponents.length,
     stepsPerSlide: stepsPerSlide,
   });
-  const isLandscape = useMediaQuery('(orientation: landscape)');
+  const isPortrait = useMediaQuery('(orientation: portrait)');
 
   const CurrentSlideComponent = slideComponents[slideIndex];
 
   return (
-    <div className={`stage-wrap ${slideIndex === 0 ? 'cover-mode' : ''}`}>
-      <div className="stage">
-        {isLandscape ? (
+    <>
+      {isPortrait && (
+        <div className="orientation-prompt">
+          <p>请旋转您的设备以获得最佳浏览体验</p>
+        </div>
+      )}
+      <div className={`stage-wrap ${slideIndex === 0 ? 'cover-mode' : ''}`}>
+        <div className="stage">
           <div className="slides-container-landscape" data-testid="landscape-container">
             <CurrentSlideComponent step={stepIndex} className="active" />
           </div>
-        ) : (
-          <div 
-            className="slides-container portrait-scroll" 
-            data-testid="portrait-container"
-          >
-            {slideComponents.map((SlideComponent, i) => (
-              <SlideComponent key={i} step={0} />
-            ))}
-          </div>
-        )}
-        <Footer
-          slideIndex={slideIndex}
-          totalSlides={slideComponents.length}
-          title={slideTitles[slideIndex]}
-        />
+          <Footer
+            slideIndex={slideIndex}
+            totalSlides={slideComponents.length}
+            title={slideTitles[slideIndex]}
+          />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

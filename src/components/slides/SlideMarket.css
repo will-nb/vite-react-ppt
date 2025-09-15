@@ -51,6 +51,32 @@
   justify-content: center;
 }
 
+.notes .notes-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin: 0 0 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.notes .notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notes .notes-list li {
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 1.2em;
+}
+
+.notes .notes-list li.summary {
+  margin-top: 1.5em;
+  color: #1e293b;
+  font-weight: 500;
+}
+
 .dot {
   width: 14px;
   height: 14px;

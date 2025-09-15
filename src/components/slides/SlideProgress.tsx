@@ -11,13 +11,14 @@ const progressSteps = [
   },
   {
     type: 'centered',
-    title: 'Tiered AI Engine for Quality & Scale',
+    title: "On the backend, we’ve built a <em>Tiered AI Engine for Quality & Scale</em>.",
     desc: `
       <ul>
-        <li><strong>Efficient Base Layer:</strong> Hosting lightweight models myself is quite easy — I can do it without trouble.</li>
-        <li><strong>Premium Quality Fallback:</strong> Connecting to top-tier APIs is also so easy, I’ve already mastered it.</li>
-        <li><strong>Future-Ready:</strong> But training our own models and embedding them on mobile devices — that’s the real challenge, and I’ll need skilled engineers to join me.</li>
+        <li><strong>Efficient Base Layer:</strong> Running lightweight models is trivial — anyone can set them up, and so can I.</li>
+        <li><strong>Premium Quality Fallback:</strong> Connecting to top-tier APIs is also routine — it’s something any developer can do.</li>
+        <li><strong>Future-Ready:</strong> The real challenge is training our own models and embedding them directly on mobile devices — and for that, I’ll need talented engineers to join me.</li>
       </ul>
+      <p class="tech-summary">We also combine OCR, semantic search, and Qdrant caching to make answers faster and more accurate.</p>
     `,
     images: ['/assets/ai.png'],
   },
@@ -61,7 +62,7 @@ const SlideProgress: React.FC<SlideProps> = ({ step = 0, className = '' }) => {
         return (
           <div className={styles.centeredLayout}>
             <div className={styles.content}>
-              <h2 className={styles.title}>{currentStep.title}</h2>
+              <h2 className={styles.title} dangerouslySetInnerHTML={{ __html: currentStep.title as string }} />
               <div className={styles.desc} dangerouslySetInnerHTML={{ __html: currentStep.desc as string }} />
             </div>
             <div className={styles.imageContainer}>
