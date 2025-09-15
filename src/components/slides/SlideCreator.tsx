@@ -12,7 +12,7 @@ const creatorSteps = [
   {
     title: 'Effective Learning & Motivation',
     description: 'Commit to your goals with tailored learning paths. Choose from multiple-choice, fill-in-the-blank, or Q&A exercises, track your progress with calendars and milestones, and stay motivated with random point rewards.',
-    image: '/assets/output.gif',
+    image: '/assets/q.gif',
   },
 ];
 

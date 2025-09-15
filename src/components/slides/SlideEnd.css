@@ -4,5 +4,25 @@
 .end-card .logo img { width: clamp(100px, 12vw, 200px); }
 .end-card h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; color: var(--primary-color); margin: 0 0 12px; }
 .end-card .subtitle { font-size: clamp(1.8rem, 4vw, 3rem); color: #475569; margin: 0 0 24px; }
+
+.end-card .end-slogan {
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  font-style: italic;
+  color: #475569;
+  max-width: 35ch;
+  line-height: 1.6;
+  margin: 2.5rem auto;
+  border-left: 4px solid #FF7B54;
+  padding-left: 24px;
+  text-align: left;
+}
+
+.end-card .presenter-name {
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  color: var(--primary-color);
+  margin-top: 2rem;
+  font-weight: 500;
+}
+
 .end-card .final-links { margin-top: 32px; }
 .end-card .final-links a { font-size: clamp(1rem, 1.8vw, 1.5rem); color: #FF7B54; font-weight: 700; text-decoration: none; }

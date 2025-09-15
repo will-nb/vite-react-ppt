@@ -14,6 +14,10 @@ const SlideEnd: React.FC<SlideProps> = ({ className }) => {
         </div>
         <h2>Thank You</h2>
         <p className="subtitle">Public beta is coming soon.</p>
+        <blockquote className="end-slogan">
+          “Turn knowledge into memory, memory into thinking, and thinking into strength.”
+        </blockquote>
+        <div className="presenter-name">William Lynn | 林炯</div>
         <div className="final-links">
           <a href="https://granostack.com/demo" target="_blank" rel="noreferrer">
             granostack.com/demo
