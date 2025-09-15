@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import App from '../App';
-import { mockMatchMedia } from './mocks/matchMedia.mock';
+import { matchMedia } from './mocks/matchMedia.mock';
 
 describe('Global Layout Rules', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     // Mock matchMedia for landscape/portrait checks
-    mockMatchMedia({ orientation: 'landscape' });
+    matchMedia.useMediaQuery('(orientation: landscape)');
   });
 
   it('should enforce that every .slide element contains a single .slide-content child', () => {
@@ -29,7 +29,7 @@ describe('Global Layout Rules', () => {
     
     expect(allSlideComponents.length).toBeGreaterThan(0);
 
-    allSlideComponents.forEach((slideEl, index) => {
+    allSlideComponents.forEach((slideEl) => {
       // Rule 1: Must have exactly one direct child.
       expect(slideEl.children.length).toBe(1);
 
