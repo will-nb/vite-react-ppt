@@ -112,7 +112,7 @@
   font-size: 3.5rem;
   margin-bottom: 1.5rem;
   font-weight: 700;
-  color: #fff;
+  color: #FFFFFF; /* Explicitly set title color to white for high contrast */
 }
 
 .text-content p {

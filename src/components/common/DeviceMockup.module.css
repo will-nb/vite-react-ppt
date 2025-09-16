@@ -48,3 +48,35 @@
   object-fit: cover;
   display: block;
 }
+
+.browser {
+  --browser-radius: 12px;
+  --browser-border: 1px;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: var(--browser-radius);
+  background: #2d3748; /* A dark gray for the browser chrome */
+  border: var(--browser-border) solid #4a5568;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+}
+
+.browser::before {
+  content: '● ● ●';
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  color: #9fa9ba;
+  font-size: 14px;
+  letter-spacing: 6px;
+  z-index: 2;
+}
+
+.browser .content {
+  border-radius: 0 0 calc(var(--browser-radius) - var(--browser-border)) calc(var(--browser-radius) - var(--browser-border));
+  overflow: hidden;
+  margin-top: 35px; /* Space for the top bar */
+}

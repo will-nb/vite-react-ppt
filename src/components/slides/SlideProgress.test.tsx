@@ -1,55 +1,60 @@
+// src/components/slides/SlideProgress.test.tsx
 import { render, screen } from '@testing-library/react';
 import SlideProgress from './SlideProgress';
-import { matchMedia } from '../../tests/mocks/matchMedia.mock';
 import styles from './SlideProgress.module.css';
+import { matchMedia } from '../../tests/mocks/matchMedia.mock';
 
-// TODO: These tests are failing due to issues unrelated to the recent refactoring.
-// Skipping them for now to focus on the primary task. They should be revisited.
-describe.skip('SlideProgress', () => {
+// The tests are now un-skipped and updated to reflect the new design.
+describe('SlideProgress', () => {
   beforeAll(() => {
+    // Mock for potential responsive elements, though current design is fixed.
     matchMedia.useMediaQuery('(min-width: 1024px)');
   });
 
-  it('should render the correct two-column grid layout for step 0', () => {
+  test('should render the split layout for step 0', () => {
     render(<SlideProgress step={0} className="active" />);
     
-    const container = screen.getByTestId('slide-progress-container');
-    const slideContent = container.querySelector('.slide-content');
-    expect(slideContent).not.toBeNull();
-    const layoutGrid = slideContent!.querySelector(`.${styles.layoutGrid}`);
+    // Check for the main title and description
+    expect(screen.getByText('Full-Stack Craftsmanship')).toBeInTheDocument();
     
-    expect(layoutGrid).toBeInTheDocument();
-    expect(layoutGrid).not.toBeNull();
-
-    const computedStyles = window.getComputedStyle(layoutGrid!);
-    expect(computedStyles.display).toBe('grid');
-    expect(computedStyles.gridTemplateColumns).toBe('2fr 1fr');
-
-    const leftColumn = layoutGrid!.querySelector(`.${styles.leftColumn}`);
-    const rightColumn = layoutGrid!.querySelector(`.${styles.rightColumn}`);
-
-    expect(leftColumn).toBeInTheDocument();
-    expect(rightColumn).toBeInTheDocument();
-    expect(leftColumn).not.toBeNull();
-    expect(rightColumn).not.toBeNull();
-
-    const h2 = leftColumn!.querySelector('h2');
-    expect(h2).not.toBeNull();
-    expect(h2!.textContent).toBe('Full-Stack Craftsmanship');
-
-    const leftImg = leftColumn!.querySelector('img');
-    expect(leftImg).not.toBeNull();
-    expect(leftImg!.src).toContain('macos-app.png');
-
-    const rightImg = rightColumn!.querySelector('img');
-    expect(rightImg).not.toBeNull();
-    expect(rightImg!.src).toContain('change-avatar.gif');
+    // Check for the mockups by their content alt text
+    expect(screen.getByAltText('Desktop App')).toBeInTheDocument();
+    expect(screen.getByAltText('Mobile App GIF')).toBeInTheDocument();
+    
+    // Verify the container has the correct layout class
+    const container = screen.getByTestId('slide-progress-container');
+    expect(container.querySelector(`.${styles.gridSplit}`)).toBeInTheDocument();
   });
 
-  it('should render the default layout for other steps', () => {
-    render(<SlideProgress step={1} />);
+  test('should render the centered card layout for step 1', () => {
+    render(<SlideProgress step={1} className="active" />);
+    
+    // Check for the main title
+    expect(screen.getByText('Tiered AI Engine for Quality & Scale')).toBeInTheDocument();
+    
+    // Check for the content of the three cards
+    expect(screen.getByText('Efficient Base')).toBeInTheDocument();
+    expect(screen.getByText('Premium Quality')).toBeInTheDocument();
+    expect(screen.getByText('Future-Ready')).toBeInTheDocument();
+    
+    // Verify the container has the correct layout class
     const container = screen.getByTestId('slide-progress-container');
-    const defaultLayout = container.querySelector(`.${styles.defaultLayout}`);
-    expect(defaultLayout).toBeInTheDocument();
+    expect(container.querySelector(`.${styles.gridCenter}`)).toBeInTheDocument();
+  });
+
+  test('should render the hiring grid layout for step 2', () => {
+    render(<SlideProgress step={2} className="active" />);
+    
+    // Check for the hiring title
+    expect(screen.getByText('Hiring: Owners, Not Employees')).toBeInTheDocument();
+    
+    // Check for the three images by their alt text
+    expect(screen.getByAltText('Two key roles')).toBeInTheDocument();
+    expect(screen.getByAltText('Growth inside the company')).toBeInTheDocument();
+    expect(screen.getByAltText('Growth as a creator')).toBeInTheDocument();
+    
+    // Verify the container has the correct layout class
+    const container = screen.getByTestId('slide-progress-container');
+    expect(container.querySelector(`.${styles.hiringLayout}`)).toBeInTheDocument();
   });
 });

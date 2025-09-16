@@ -1,181 +1,143 @@
-/* Fresh start for SlideProgress.module.css */
+/* SlideProgress.module.css - Redesigned for visual consistency */
 
-.layoutGrid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr;
-  gap: clamp(24px, 4vw, 48px);
+.gridSplit, .gridCenter, .hiringLayout {
   width: 100%;
   height: 100%;
-  align-items: end; /* Aligns grid items to the bottom, fixing the "uneven legs" issue */
-}
-
-.leftColumn {
-  grid-column: 1;
-  grid-row: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 24px;
-  min-height: 0;
-  height: 100%; /* Ensure it takes up full grid area height */
-}
-
-.rightColumn {
-  grid-column: 2;
-  grid-row: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 0; /* Add min-height to constrain flex item */
-  height: 100%; /* Ensure it takes up full grid area height */
-}
-
-.content {
-  flex-shrink: 0;
+  padding: 4vw;
+  box-sizing: border-box;
+  color: #fff;
 }
 
 .title {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  margin: 0 0 8px;
-  color: var(--primary-color);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #FFFFFF; /* Explicitly set title color to white for high contrast */
 }
 
 .desc {
-  font-size: clamp(1rem, 1.8vw, 1.5rem);
-  color: #475569;
-  margin: 12px 0 0;
+  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
   line-height: 1.6;
+  max-width: 65ch;
+  color: #ccc;
 }
 
-.imageContainer {
-  display: flex;
-  justify-content: center;
+/* --- Step 1: Split Layout --- */
+.gridSplit {
   align-items: center;
-  background-color: #f5f5f5; /* Reverted from the 'red' debug color */
-  border-radius: 24px;
-  box-sizing: border-box;
-  overflow: hidden;
-  padding: 16px; /* Provides internal spacing for the image */
+  gap: 3vw;
 }
 
-.imageContainer img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* This ensures the image is fully visible without being cropped, maintaining its aspect ratio */
-}
-
-.rightColumn .imageContainer {
-  height: 100%; /* This forces the container to fill the available vertical space defined by the grid, not by its content. */
-}
-
-.leftColumn .imageContainer {
-  /*
-    This is the definitive fix. By making the image container a flex item that can grow,
-    it will automatically fill the remaining vertical space in the left column
-    after the text content has taken its required space.
-    'min-height: 0' is a crucial flexbox fix to prevent the image from overflowing its container.
-  */
-  flex-grow: 1;
-  min-height: 0; 
-}
-
-.centeredLayout {
+.textColumn {
+  flex: 1.2;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.visualColumn {
+  flex: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.desktopMockup {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+/* --- Step 2: Centered Layout --- */
+.gridCenter {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
-  height: 100%;
   text-align: center;
+  gap: 2.5rem;
 }
 
-.centeredLayout .imageContainer {
-  max-width: 800px; /* Constrain the max width of the diagram */
+.cardsContainer {
+  display: flex;
+  gap: 2rem;
   width: 100%;
+  max-width: 1200px;
+  justify-content: center;
 }
 
-.centeredLayout .desc ul {
-  list-style-type: none; /* Remove default bullet points */
-  padding: 0;
+.card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  flex: 1;
+  text-align: left;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.card p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ccc;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px; /* Space between list items */
-  line-height: 1.7; /* Increased line-height for readability */
 }
 
-/* Style the tech-summary paragraph inside the dangerouslySetInnerHTML block */
-.desc :global(.tech-summary) {
-  margin-top: 2em; /* Add space above the paragraph */
-  color: #5a687f; /* Slightly muted color for distinction */
-  font-size: 0.9em;
+.summary {
+  font-size: 1rem;
+  color: #aaa;
+  max-width: 70ch;
+  margin-top: 1rem;
 }
 
-/* --- Hiring Step Styles --- */
-
+/* --- Step 3: Hiring Layout --- */
 .hiringLayout {
-  width: 100%;
-  height: 100%;
-  padding: clamp(24px, 5vh, 60px);
-  display: flex;
   flex-direction: column;
 }
 
-.hiringTitle {
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  margin: 0 0 10px;
+.hiringHeader {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.hiringSubtitle {
-  margin: 0 0 22px;
-  color: var(--text-muted);
-  max-width: 80ch;
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-}
-
-.hiringGridNew {
-  flex-grow: 1; /* Allow grid to fill remaining vertical space */
+.hiringGrid {
+  flex-grow: 1;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 18px;
-  min-height: 0; /* Important for flex + grid children */
+  grid-template-columns: 5fr 3fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.5rem;
+  height: 100%;
+  min-height: 0; /* Flexbox fix */
 }
 
-.leftImageContainer, .rightImageContainer {
-  border-radius: 14px;
+.hiringImageWrapper {
+  border-radius: 16px;
   overflow: hidden;
+  background: #222;
 }
 
-.leftImageContainer {
-  width: 100%;
-  height: 100%;
-}
-
-.rightImageContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  width: 100%;
-  height: 100%;
-}
-
-.leftImageContainer img, .rightImageContainer img {
+.hiringImageWrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background-color: #333; /* Dark background for images */
 }
 
-.image {
-  width: 100%; /* Ensure image fits within the padding box */
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 8px;
+.hiringImageMain {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
 }
 
-.defaultLayout {
-  /* Styles for other steps */
-  text-align: center;
+.hiringImageSideTop {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.hiringImageSideBottom {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
 }
