@@ -18,8 +18,8 @@ const innovationSteps = [
   {
     type: 'feature',
     layout: 'center',
-    title: 'Your Personal AI Knowledge Engine',
-    description: "Granostack bridges the gap. We turn your scattered notes, documents, and even voice memos into a structured knowledge base that powers a personal AI. It's AI, supercharged by *you*.",
+    title: 'AI-Powered Memory System',
+    description: "Granostack empowers your thinking. We turn your scattered notes into a smart memory card system. So you can truly learn, and think independently.",
     image: '/assets/output.gif'
   },
   {
