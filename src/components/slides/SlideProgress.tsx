@@ -78,7 +78,7 @@ const SlideProgress: React.FC<SlideProps> = ({ step = 0, className = '' }) => {
         return (
           <div className={styles.hiringLayout}>
             <div className={styles.hiringHeader}>
-              <h1 className={styles.title}>{currentStep.title}</h1>
+              <h2 className={styles.title}>{currentStep.title}</h2>
               <p className={styles.desc}>{currentStep.subtitle}</p>
             </div>
             <div className={styles.hiringGrid}>
@@ -100,7 +100,7 @@ const SlideProgress: React.FC<SlideProps> = ({ step = 0, className = '' }) => {
   };
 
   return (
-    <div className={`slide ${styles.slideProgressContainer} ${className}`} data-testid="slide-progress-container">
+    <div className={`slide slide-dark ${styles.slideProgressContainer} ${className}`} data-testid="slide-progress-container">
       <div className="slide-content">{renderContent()}</div>
     </div>
   );

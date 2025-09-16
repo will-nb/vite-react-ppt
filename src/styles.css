@@ -41,7 +41,7 @@ html, body, #root {
     position: relative;
     overflow: hidden;
     box-shadow: 0 10px 40px rgba(0,0,0,.1);
-    background-color: var(--surface-color);
+    background-color: #111827; /* Match slide background to remove "border" */
   }
   .slides-container {
     display: none; /* 竖屏容器在横屏时隐藏 */
@@ -129,4 +129,10 @@ html, body, #root {
     display: flex;
     flex-direction: column;
   }
+}
+
+/* A utility class to force a dark background on a slide */
+.slide-dark {
+  background-color: #111827 !important;
+  color: #FFFFFF !important;
 }

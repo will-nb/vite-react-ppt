@@ -1,46 +1,45 @@
 /* SlideProgress.module.css - Redesigned for visual consistency */
 
-.slide-progress-container {
-  background-color: #111827; /* Force a dark background */
-}
-
-.gridSplit, .gridCenter, .hiringLayout {
-  width: 100%;
-  height: 100%;
+.slideProgressContainer {
   display: flex;
-  padding: 4vw;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
   box-sizing: border-box;
 }
 
+/* Define consistent title and description styles */
 .title {
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #FFFFFF; /* Explicitly set title color to white for high contrast */
+  color: #FFFFFF;
 }
 
 .desc {
-  font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+  font-size: 1.5rem;
   line-height: 1.6;
   max-width: 65ch;
-  color: #D1D5DB; /* A bright, readable light gray for body text */
+  color: #D1D5DB;
 }
 
-/* --- Step 1: Split Layout --- */
+
 .gridSplit {
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center; /* This is key for vertical alignment of the columns */
   gap: 3vw;
+  width: 100%;
+  height: 100%;
 }
 
 .textColumn {
-  flex: 1.2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; /* This will now work correctly */
 }
 
 .visualColumn {
-  flex: 0.8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -48,11 +47,10 @@
 
 .desktopMockup {
   margin-top: 3rem;
-  width: 100%;
 }
 
-/* --- Step 2: Centered Layout --- */
 .gridCenter {
+  display: flex; /* Ensure flex is explicitly defined */
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -105,7 +103,7 @@
 
 .hiringHeader {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem; /* Reduce bottom margin to give more space to grid */
 }
 
 .hiringGrid {
@@ -113,13 +111,15 @@
   display: grid;
   grid-template-columns: 5fr 3fr;
   grid-template-rows: 1fr 1fr;
-  gap: 1.5rem;
-  height: 100%;
+  gap: 1rem; /* Reduce gap slightly */
+  height: 80%; /* Reduce the overall height of the grid */
+  margin: 0 auto; /* Center the grid horizontally */
+  max-width: 90%; /* Constrain the width */
   min-height: 0; /* Flexbox fix */
 }
 
 .hiringImageWrapper {
-  border-radius: 16px;
+  border-radius: 12px; /* Soften the corners */
   overflow: hidden;
   background: #222;
 }

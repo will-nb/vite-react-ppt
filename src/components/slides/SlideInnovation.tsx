@@ -38,27 +38,16 @@ const innovationSteps = [
 ];
 
 const CreatorSlideContent: React.FC = () => (
-  // The styles from SlideCreator.module.css were used here.
-  // We need to either move those styles to SlideInnovation.css or create them locally.
-  // For now, let's use a simple placeholder structure. TODO: Re-apply creator slide styles.
-  <div>
-    <div /* className={styles.phone} */>
-      <div /* className={styles.status} */>Granostack</div>
-      <div /* className={styles.screen} */>
-        <h3>Enter Activation Key</h3>
-        <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" readOnly />
-        <button>Activate</button>
-        <p /* className={styles.hint} */>You can buy or receive a key from a creator.</p>
-      </div>
+  <div className="creator-content">
+    <div className="phone-status-bar">Granostack</div>
+    <div className="phone-screen">
+      <h3>Activate Creator Deck</h3>
+      <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" readOnly />
+      <button>Activate</button>
+      <p className="hint">Get a key from a creator to unlock their shared deck.</p>
     </div>
-    <ul /* className={styles.bullets} */>
-        <li>Activation key system</li>
-        <li>Free promotional credits</li>
-        <li>Connect with paying users</li>
-    </ul>
   </div>
 );
-
 
 const SlideInnovation: React.FC<SlideProps> = ({ step, className }) => {
   const currentStep = innovationSteps[step] || innovationSteps[0];
@@ -71,7 +60,15 @@ const SlideInnovation: React.FC<SlideProps> = ({ step, className }) => {
           <div className="text-content">
             <h2>{title}</h2>
             <p>{description}</p>
-            {type === 'creator' && <CreatorSlideContent />}
+            {type === 'creator' &&
+              <div className="creator-features">
+                <ul>
+                  <li>Activation key system</li>
+                  <li>Free promotional credits</li>
+                  <li>Share with your community</li>
+                </ul>
+              </div>
+            }
           </div>
           <div className="visual-content">
             {type === 'story' && 'images' in currentStep && (
@@ -79,6 +76,11 @@ const SlideInnovation: React.FC<SlideProps> = ({ step, className }) => {
                 <DeviceMockup type="phone"><img src={currentStep.images[0].src} alt={currentStep.images[0].alt} /></DeviceMockup>
                 <DeviceMockup type="phone"><img src={currentStep.images[1].src} alt={currentStep.images[1].alt} /></DeviceMockup>
               </div>
+            )}
+            {type === 'creator' && (
+              <DeviceMockup type="phone">
+                <CreatorSlideContent />
+              </DeviceMockup>
             )}
           </div>
         </div>

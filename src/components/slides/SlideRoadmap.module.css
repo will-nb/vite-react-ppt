@@ -1,0 +1,76 @@
+.slideRoadmap {
+  background-color: #111827;
+  color: #F9FAFB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 60px;
+  overflow: hidden;
+}
+
+.content {
+  width: 100%;
+  max-width: 1400px; /* Increase max-width to accommodate all cards */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 48px; /* Add more margin to the bottom */
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* A 4-column grid for the 4 quarters */
+  gap: 32px; /* Gap between cards */
+  width: 100%;
+}
+
+.quarterCard {
+  background-color: #1F2937;
+  border: 1px solid #374151;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: left;
+}
+
+.milestone {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3B82F6;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0 0 16px;
+}
+
+.tasks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tasks li {
+  font-size: 1rem;
+  color: #D1D5DB;
+  margin-bottom: 8px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.tasks li::before {
+  content: '•';
+  color: #3B82F6;
+  position: absolute;
+  left: 0;
+}

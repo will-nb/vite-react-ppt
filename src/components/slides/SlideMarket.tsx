@@ -1,126 +1,167 @@
 // src/components/slides/SlideMarket.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import './SlideMarket.css';
+import styles from './SlideMarket.module.css';
 import { SlideProps } from './types';
+import DeviceMockup from '../common/DeviceMockup';
 
-const SlideMarket: React.FC<SlideProps> = ({ step, className }) => {
+const marketSteps = [
+  // Step 0: Market Analysis
+  {
+    type: 'market',
+    title: 'A Far From Saturated Market',
+    insights: [
+      'Global mobile learning is projected to reach <strong>$86.4B in 2024</strong>.',
+      'Even a top app like Duolingo holds <strong>less than 1%</strong> of this market.',
+      'The opportunity for specialized, high-quality learning tools is immense.'
+    ],
+    chartData: {
+      labels: ['Mobile Learning Market', 'Duolingo Revenue'],
+      data: [99.13, 0.87],
+    }
+  },
+  // Step 1: Who We Serve (now a single step with multiple profiles)
+  {
+    type: 'users',
+    title: 'Who We Serve',
+    profiles: [
+      { name: 'Students', description: 'Deepen understanding of complex subjects and ace exams.', image: '/assets/student.png' },
+      { name: 'Content Creators', description: 'Build a personal knowledge base and create high-quality content.', image: '/assets/creator.png' },
+      { name: 'Professionals', description: 'Stay ahead of the curve in your field and drive innovation.', image: '/assets/professional.png' },
+      { name: 'Lifelong Learners', description: 'Explore new topics and expand your horizons.', image: '/assets/lifelong_learners.png' }
+    ]
+  },
+  // Step 2: Pricing
+  {
+    type: 'pricing',
+    title: 'Pricing & Rewards',
+    plans: [
+      { name: 'Free', price: 'HK$0', features: ['Video ads (forced)', 'Limited credits for cards, OCR, and AI', 'Free search'], cta: 'Get started' },
+      { name: 'Membership', price: 'HK$298 / year', features: ['No video ads', 'Unlimited base model usage', 'Premium models require credits'], cta: 'Become a member' },
+      { name: 'Lifetime', price: 'HK$998 one-time', features: ['Everything in Membership', 'One-time payment, own for life'], cta: 'Buy once', featured: true },
+    ],
+    rewards: ['Daily check-in', 'Invite friends', 'Off-site campaigns', 'Renewal / top-up']
+  }
+];
+
+const SlideMarket: React.FC<SlideProps> = ({ step = 0, className = '' }) => {
+  const chartRef = useRef<Chart | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const currentStep = marketSteps[step] || marketSteps[0];
 
   useEffect(() => {
-    const canvas = document.getElementById('marketPie') as HTMLCanvasElement;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    if (currentStep.type === 'market' && canvasRef.current) {
+      const ctx = canvasRef.current.getContext('2d');
+      if (!ctx) return;
 
-    const chart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['Others', 'Duolingo'],
-        datasets: [{
-          data: [99.13, 0.87],
-          backgroundColor: ['#3CCF91', '#FF7B54'],
-          borderWidth: 0
-        }]
-      },
-      options: { responsive: true, maintainAspectRatio: false, cutout: '45%', plugins: { legend: { display: false } } }
-    });
+      // Destroy previous chart instance if it exists
+      if (chartRef.current) {
+        chartRef.current.destroy();
+      }
 
-    return () => chart.destroy();
-  }, [step]);
+      chartRef.current = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: currentStep.chartData.labels,
+          datasets: [{
+            data: currentStep.chartData.data,
+            backgroundColor: ['#34D399', '#FF7B54'],
+            borderWidth: 0,
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '50%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (context) => `${context.label}: ${context.raw}%`
+              }
+            }
+          }
+        }
+      });
+    }
+    // Cleanup on step change or unmount
+    return () => {
+      if (chartRef.current) {
+        chartRef.current.destroy();
+        chartRef.current = null;
+      }
+    };
+  }, [currentStep]);
 
-  const served = [
-    {
-      name: 'Students',
-      desc: 'Deepen understanding of complex subjects and ace exams.',
-      img: '/assets/student.png'
-    },
-    {
-      name: 'Content Creators',
-      desc: 'Build a personal knowledge base and create high-quality content.',
-      img: '/assets/creator.png'
-    },
-    {
-      name: 'Professionals',
-      desc: 'Stay ahead of the curve in your field and drive innovation.',
-      img: '/assets/professional.png'
-    },
-    {
-      name: 'Lifelong Learners',
-      desc: 'Explore new topics and expand your horizons.',
-      img: '/assets/lifelong_learners.png'
-    },
-  ];
-
-  return (
-    <div className={`slide market ${className || ''}`}>
-      <div className="slide-content">
-        <h2 className="anim-fade">
-          {/* Title for step < 1 is now moved into the component's own view */}
-          {step >= 1 && step <= 4 && 'Who we serve'}
-          {step >= 5 && 'Pricing & rewards'}
-        </h2>
-
-        {/* Use conditional rendering (&&) to completely remove elements from DOM */}
-        
-        {step < 1 && (
-          <div className="market-view">
-            <div className="chart-card">
-              <div className="chart-container"><canvas id="marketPie"></canvas></div>
-              <div className="legend">
-                <span><span className="dot" style={{ background: '#3CCF91' }}></span>Mobile learning · $86.4B</span>
-                <span><span className="dot" style={{ background: '#FF7B54' }}></span>Duolingo · $748M</span>
+  const renderContent = () => {
+    switch (currentStep.type) {
+      case 'market':
+        return (
+          <div className={styles.gridSplit}>
+            <div className={styles.textColumn}>
+              <h2 className={styles.title}>{currentStep.title}</h2>
+              <ul className={styles.insightsList}>
+                {currentStep.insights.map((insight, i) => <li key={i} dangerouslySetInnerHTML={{ __html: insight }} />)}
+              </ul>
+            </div>
+            <div className={styles.visualColumn}>
+              <div className={styles.chartContainer}>
+                <canvas ref={canvasRef}></canvas>
               </div>
             </div>
-            <div className="notes">
-              <h3 className="notes-title">Mobile learning market</h3>
-              <ul className="notes-list">
-                <li>Global mobile learning reached <strong>$86.4B in 2024</strong>.</li>
-                <li>Even the #1 app, Duolingo, made <strong>$748M</strong> — <strong>&lt;1%</strong> share.</li>
-                <li className="summary">The market is far from saturated.</li>
-              </ul>
-            </div>
           </div>
-        )}
-
-        {step >= 1 && step <= 4 && (
-          <div className="serve-view">
-            <div className="serve-left">
-              <ul className="serve-list">
-                {served.map((item, i) => (
-                  <li key={i} className={step >= i + 1 ? 'show' : ''}>
-                    <strong>{item.name}</strong>
-                    <span>{item.desc}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="serve-right">
-              {served.map((item, i) => (
-                <figure key={i} className={step >= i + 1 ? 'show' : ''}>
-                  <img src={item.img} alt={item.name} />
-                </figure>
+        );
+      case 'users':
+        return (
+          <div className={styles.usersLayout}>
+            <h2 className={styles.title}>{currentStep.title}</h2>
+            <div className={styles.userProfiles}>
+              {currentStep.profiles.map((profile, index) => (
+                <div key={index} className={styles.userProfileCard}>
+                  <div className={styles.profileImageContainer}>
+                    <img src={profile.image} alt={profile.name} className={styles.profileImage} />
+                  </div>
+                  <div className={styles.profileText}>
+                    <h3>{profile.name}</h3>
+                    <p>{profile.description}</p>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
-        )}
-
-        {/* Step 5: Pricing */}
-        {step >= 5 && (
-          <div className="pricing-view">
-            <div className="pricing-wrap">
-              {/* Free Plan */}
-              <div className="plan-card show"><div className="plan-head"><span className="plan-title">Free</span></div><div className="plan-price">HK$0</div><ul className="plan-feats"><li className="neg">Video ads (forced)</li><li>Add cards <span className="pill">credits</span></li><li>OCR to add <span className="pill">credits</span></li><li>Search cards (free)</li><li>Ask AI <span className="pill">credits</span></li><li>Premium models <span className="pill">credits</span></li></ul><a className="plan-cta" href="#">Get started</a></div>
-              {/* Membership Plan */}
-              <div className="plan-card show"><div className="plan-head"><span className="plan-title">Membership</span></div><div className="plan-price">HK$298 / year</div><ul className="plan-feats"><li>No video ads</li><li>Add cards <span className="pill">base model free</span></li><li>OCR to add <span className="pill">base model free</span></li><li>Search cards (free)</li><li>Ask AI <span className="pill">base model free</span></li><li>Premium models <span className="pill">credits</span></li></ul><a className="plan-cta" href="#">Become a member</a></div>
-              {/* Lifetime Plan */}
-              <div className="plan-card featured show"><div className="plan-head"><span className="plan-title">Lifetime</span><span className="plan-badge">Recommended</span></div><div className="plan-price">HK$998 one-time</div><ul className="plan-feats"><li>No video ads</li><li>Add cards <span className="pill">base model free</span></li><li>OCR to add <span className="pill">base model free</span></li><li>Search cards (free)</li><li>Ask AI <span className="pill">base model free</span></li><li>Premium models <span className="pill">credits</span></li><li>One-time payment, own for life</li></ul><a className="plan-cta" href="#">Buy once</a></div>
+        );
+      case 'pricing':
+        return (
+          <div className={styles.gridCenter}>
+            <h2 className={styles.title}>{currentStep.title}</h2>
+            <div className={styles.pricingContainer}>
+              {currentStep.plans.map(plan => (
+                <div key={plan.name} className={`${styles.planCard} ${plan.featured ? styles.featured : ''}`}>
+                  {plan.featured && <div className={styles.planBadge}>Recommended</div>}
+                  <h3>{plan.name}</h3>
+                  <div className={styles.planPrice}>{plan.price}</div>
+                  <ul className={styles.planFeatures}>
+                    {plan.features.map(feat => <li key={feat}>{feat}</li>)}
+                  </ul>
+                  <button className={styles.planCta}>{plan.cta}</button>
+                </div>
+              ))}
             </div>
-            <div className="credits-wrap show">
-              <div className="credits-title">Earn credits</div>
-              <ul className="credits-list"><li>1) Daily check-in</li><li>2) Invite friends</li><li>3) Off-site campaigns</li><li>4) Renewal / top-up</li></ul>
+            <div className={styles.rewardsSection}>
+              <h3>Earn Credits</h3>
+              <div className={styles.rewardsList}>
+                {currentStep.rewards.map(reward => <span key={reward}>{reward}</span>)}
+              </div>
             </div>
           </div>
-        )}
+        );
+    }
+  };
+
+  return (
+    <div className={`${styles.slideMarket} slide ${className}`}>
+      <div className="slide-content">
+        {renderContent()}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const slideComponents = [
   SlideRoadmap, SlideEnd
 ];
 
-const stepsPerSlide = [1, 4, 3, 6, 1, 1];
+const stepsPerSlide = [1, 4, 3, 3, 1, 1];
 const slideTitles = [
   "HKSTP Pitch",          // 1/6
   "Innovation",           // 2/6

@@ -1,41 +1,43 @@
 import { render, screen } from '@testing-library/react';
 import SlideMarket from '../components/slides/SlideMarket';
+import { matchMedia } from './mocks/matchMedia.mock';
 
-// TODO: These tests are failing due to issues unrelated to the recent refactoring.
-// Skipping them for now to focus on the primary task. They should be revisited.
-describe.skip('SlideMarket Component', () => {
-  it('should not display "Who we serve" content when step is 0', () => {
-    render(<SlideMarket step={0} className="" />);
-    expect(screen.queryByText('Students')).not.toBeInTheDocument();
+// Un-skipping the tests and updating them for the new, unified design.
+describe('SlideMarket Component', () => {
+
+  beforeAll(() => {
+    matchMedia.useMediaQuery('(min-width: 1024px)');
+    // Mock for Chart.js
+    window.HTMLCanvasElement.prototype.getContext = () => null;
   });
 
-  it('should display "Who we serve" content when step is 2', () => {
-    render(<SlideMarket step={2} className="" />);
-    
-    // This assertion will fail initially because the content is missing.
+  test('should display market analysis content for step 0', () => {
+    render(<SlideMarket step={0} />);
+    expect(screen.getByText('A Far From Saturated Market')).toBeInTheDocument();
+    expect(screen.getByText(/Global mobile learning/)).toBeInTheDocument();
+  });
+
+  test('should display the "Students" user profile for step 1', () => {
+    render(<SlideMarket step={1} />);
+    expect(screen.getByText('Who We Serve')).toBeInTheDocument();
     expect(screen.getByText('Students')).toBeInTheDocument();
-    expect(screen.getByText('Exam preparation and language learning')).toBeInTheDocument();
+    // Check for the description of the active user
+    expect(screen.getByText('Deepen understanding of complex subjects and ace exams.')).toBeInTheDocument();
   });
 
-  it('should not display "Pricing" content when step is less than 6', () => {
-    render(<SlideMarket step={5} className="" />);
-    expect(screen.queryByText('Pricing & rewards')).not.toBeInTheDocument();
-    expect(screen.queryByText('HK$0')).not.toBeInTheDocument();
+  test('should display the "Professionals" user profile for step 3', () => {
+    render(<SlideMarket step={3} />);
+    expect(screen.getByText('Who We Serve')).toBeInTheDocument();
+    expect(screen.getByText('Professionals')).toBeInTheDocument();
+    // Check for the description of the active user
+    expect(screen.getByText('Stay ahead of the curve in your field and drive innovation.')).toBeInTheDocument();
   });
 
-  it('should display "Pricing" content when step is 6 and reflect copy changes', () => {
-    render(<SlideMarket step={6} className="" />);
-    
-    // Check that main title and prices are visible
-    expect(screen.getByText('Pricing & rewards')).toBeInTheDocument();
-    expect(screen.getByText('HK$0')).toBeInTheDocument();
-    expect(screen.getByText('HK$298 / year')).toBeInTheDocument();
-
-    // Verify descriptive text is REMOVED
-    expect(screen.queryByText('Start learning with credits')).not.toBeInTheDocument();
-    expect(screen.queryByText('Ad-free forever; own it for life')).not.toBeInTheDocument();
-    
-    // Verify the new feature text is ADDED to the Lifetime plan
-    expect(screen.getByText(/One-time payment, own for life/i)).toBeInTheDocument();
+  test('should display pricing content for step 5', () => {
+    render(<SlideMarket step={5} />);
+    expect(screen.getByText('Pricing & Rewards')).toBeInTheDocument();
+    expect(screen.getByText('Membership')).toBeInTheDocument();
+    expect(screen.getByText('HK$998 one-time')).toBeInTheDocument();
   });
+
 });

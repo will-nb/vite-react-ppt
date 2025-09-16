@@ -1,6 +1,6 @@
 // src/components/slides/SlideRoadmap.tsx
 import React from 'react';
-import './SlideRoadmap.css';
+import styles from './SlideRoadmap.module.css';
 import { SlideProps } from './types';
 
 const quarters = [
@@ -10,17 +10,21 @@ const quarters = [
   { milestone: 'M10-12', title: 'Global Launch', tasks: ['On-device Models', 'Multi-language', 'Worldwide Rollout'] }
 ];
 
-const SlideRoadmap: React.FC<SlideProps> = ({ className }) => {
+const SlideRoadmap: React.FC<SlideProps> = ({ className = '' }) => {
   return (
-    <div className={`slide roadmap ${className || ''}`}>
-      <div className="slide-content">
-        <h2>Roadmap</h2>
-        <div className="timeline">
-          {quarters.map((q, i) => (
-            <div className="quarter" key={i}>
-              <div className="milestone">{q.milestone}</div>
-              <h3>{q.title}</h3>
-              <ul>{q.tasks.map((t, ti) => <li key={ti}>{t}</li>)}</ul>
+    <div className={`${styles.slideRoadmap} ${className}`}>
+      <div className={styles.content}>
+        <h2 className={styles.mainTitle}>Roadmap</h2>
+        <div className={styles.timeline}>
+          {quarters.map((quarter, index) => (
+            <div key={index} className={styles.quarterCard}>
+              <div className={styles.milestone}>{quarter.milestone}</div>
+              <h3 className={styles.title}>{quarter.title}</h3>
+              <ul className={styles.tasks}>
+                {quarter.tasks.map((task, taskIndex) => (
+                  <li key={taskIndex}>{task}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

@@ -1,28 +1,63 @@
-.slide.end-card { background: var(--surface-color); color: var(--primary-color); text-align: center; }
-.end-card .logo { display:flex; justify-content:center; align-items:center; margin-bottom: 32px; }
-.end-card .logo .logo-card { background: var(--primary-color); padding: 20px 30px; border-radius: 16px; box-shadow: 0 6px 18px rgba(15,23,42,.06); display:inline-flex; }
-.end-card .logo img { width: clamp(100px, 12vw, 200px); }
-.end-card h2 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; color: var(--primary-color); margin: 0 0 12px; }
-.end-card .subtitle { font-size: clamp(1.8rem, 4vw, 3rem); color: #475569; margin: 0 0 24px; }
+.slide.end .slide-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
-.end-card .end-slogan {
-  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+.logo-container {
+  margin-bottom: 40px;
+}
+
+.logo-container img {
+  width: clamp(120px, 15vw, 180px);
+  opacity: 0.9;
+}
+
+.slide.end h2 {
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 12px;
+}
+
+.slide.end .subtitle {
+  font-size: 1.75rem;
+  color: #D1D5DB;
+  margin: 0 0 32px;
+}
+
+.slogan {
+  font-size: 1.25rem;
   font-style: italic;
-  color: #475569;
-  max-width: 35ch;
+  color: #9CA3AF;
+  max-width: 40ch;
   line-height: 1.6;
-  margin: 2.5rem auto;
-  border-left: 4px solid #FF7B54;
+  margin: 0 auto 32px;
+  border-left: 3px solid #3B82F6;
   padding-left: 24px;
   text-align: left;
 }
 
-.end-card .presenter-name {
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  color: var(--primary-color);
-  margin-top: 2rem;
+.presenter {
+  font-size: 1.5rem;
+  color: #FFFFFF;
   font-weight: 500;
+  margin-top: 24px;
 }
 
-.end-card .final-links { margin-top: 32px; }
-.end-card .final-links a { font-size: clamp(1rem, 1.8vw, 1.5rem); color: #FF7B54; font-weight: 700; text-decoration: none; }
+.links {
+  margin-top: 16px;
+}
+
+.links a {
+  font-size: 1.25rem;
+  color: #3B82F6;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
