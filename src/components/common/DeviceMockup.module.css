@@ -1,0 +1,50 @@
+/* TODO: The current styles are optimized for a 1920x1080 landscape view. 
+   For future versions, these should be made responsive using media queries 
+   or container queries to support various screen sizes and orientations. */
+
+.phone {
+  --phone-width: 320px;
+  --phone-height: 693px;
+  --phone-radius: 36px;
+  --phone-border: 12px;
+
+  width: var(--phone-width);
+  height: var(--phone-height);
+  border-radius: var(--phone-radius);
+  background: #111;
+  padding: var(--phone-border);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto; /* Center the mockup */
+}
+
+.phone::before {
+  content: '';
+  position: absolute;
+  top: var(--phone-border);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 16px;
+  background: #111;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  z-index: 2;
+}
+
+
+.content {
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--phone-radius) - var(--phone-border));
+  overflow: hidden;
+  background: #fff; /* A fallback background */
+}
+
+.content > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

@@ -3,12 +3,11 @@ import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
 // Mock Canvas getContext for Chart.js
-HTMLCanvasElement.prototype.getContext = vi.fn();
+if (typeof HTMLCanvasElement !== 'undefined') {
+  HTMLCanvasElement.prototype.getContext = () => null;
+}
 
-// Mock Fullscreen API
-document.documentElement.requestFullscreen = vi.fn();
-document.exitFullscreen = vi.fn();
-Object.defineProperty(document, 'fullscreenElement', {
-  value: null,
-  writable: true,
-});
+// Mock requestFullscreen
+if (typeof document !== 'undefined' && !document.documentElement.requestFullscreen) {
+  document.documentElement.requestFullscreen = vi.fn();
+}

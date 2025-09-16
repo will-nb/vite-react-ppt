@@ -19,22 +19,22 @@ describe('App Slide Navigation (Landscape)', () => {
     render(<App />);
     
     // Initial state: Only cover slide content should be present
-    expect(screen.getByText('Turn Knowledge into Power')).toBeInTheDocument();
-    expect(screen.queryByText('Notes don’t stick')).not.toBeInTheDocument();
+    expect(screen.getByAltText('Granostack Cover')).toBeInTheDocument();
+    expect(screen.queryByText('Knowledge in Silos')).not.toBeInTheDocument();
 
     // Navigate forward
     fireEvent.keyDown(window, { key: 'ArrowRight' });
     
     // After navigation: Cover slide is unmounted, Story slide is mounted
-    expect(screen.queryByText('Turn Knowledge into Power')).not.toBeInTheDocument();
-    expect(screen.getByText('Notes don’t stick')).toBeInTheDocument();
+    expect(screen.queryByAltText('Granostack Cover')).not.toBeInTheDocument();
+    expect(screen.getByText('Knowledge in Silos')).toBeInTheDocument();
 
     // Navigate backward
     fireEvent.keyDown(window, { key: 'ArrowLeft' });
 
     // After navigation: Story slide is unmounted, Cover slide is mounted back
-    expect(screen.queryByText('Notes don’t stick')).not.toBeInTheDocument();
-    expect(screen.getByText('Turn Knowledge into Power')).toBeInTheDocument();
+    expect(screen.queryByText('Knowledge in Silos')).not.toBeInTheDocument();
+    expect(screen.getByAltText('Granostack Cover')).toBeInTheDocument();
   });
 });
 
@@ -50,8 +50,8 @@ describe('App Slide Navigation (Portrait)', () => {
         expect(screen.queryByTestId('landscape-container')).not.toBeInTheDocument();
         
         // In portrait, all slides are in the document for scrolling.
-        expect(screen.getByText('Turn Knowledge into Power')).toBeInTheDocument();
-        expect(screen.getByText('Notes don’t stick')).toBeInTheDocument();
+        expect(screen.getByAltText('Granostack Cover')).toBeInTheDocument();
+        expect(screen.getByText('Knowledge in Silos')).toBeInTheDocument();
     });
 });
 
@@ -64,17 +64,17 @@ describe('Footer Functionality', () => {
     render(<App />);
 
     // 1. Initial render check
-    expect(screen.getByText('1 / 10')).toBeInTheDocument();
+    expect(screen.getByText('1 / 6')).toBeInTheDocument();
 
     // 2. Navigate forward and check update
     fireEvent.keyDown(window, { key: 'ArrowRight' });
-    expect(screen.queryByText('1 / 10')).not.toBeInTheDocument();
-    expect(screen.getByText('2 / 10')).toBeInTheDocument();
+    expect(screen.queryByText('1 / 6')).not.toBeInTheDocument();
+    expect(screen.getByText('2 / 6')).toBeInTheDocument();
 
     // 3. Navigate backward and check update
     fireEvent.keyDown(window, { key: 'ArrowLeft' });
-    expect(screen.queryByText('2 / 10')).not.toBeInTheDocument();
-    expect(screen.getByText('1 / 10')).toBeInTheDocument();
+    expect(screen.queryByText('2 / 6')).not.toBeInTheDocument();
+    expect(screen.getByText('1 / 6')).toBeInTheDocument();
   });
 });
 
@@ -114,7 +114,7 @@ describe('Scroll Snap Functionality (Portrait)', () => {
 
     // 2. Check each slide for its own necessary class
     const slides = portraitContainer.children;
-    expect(slides.length).toBe(10);
+    expect(slides.length).toBe(6);
     for (const slide of slides) {
       expect(slide).toHaveClass('slide');
     }

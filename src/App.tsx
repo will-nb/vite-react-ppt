@@ -2,27 +2,24 @@ import { useNavigation } from './hooks/useNavigation';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import Footer from './components/Footer';
 import {
-  SlideCover, SlideStory, SlideProgress, SlideMarket,
-  SlideCreator,
+  SlideCover, SlideInnovation, SlideProgress, SlideMarket,
   SlideRoadmap, SlideEnd
 } from './components';
 import './styles.css';
 
 const slideComponents = [
-  SlideCover, SlideStory, SlideProgress, SlideMarket,
-  SlideCreator,
+  SlideCover, SlideInnovation, SlideProgress, SlideMarket,
   SlideRoadmap, SlideEnd
 ];
 
-const stepsPerSlide = [1, 3, 3, 6, 3, 1, 1];
+const stepsPerSlide = [1, 4, 3, 6, 1, 1];
 const slideTitles = [
-  "HKSTP Pitch",          // 1/7
-  "Project Introduction", // 2/7
-  "Team Building",        // 3/7
-  "Market Analysis",      // 4/7
-  "Creator Economy",      // 5/7
-  "Roadmap",              // 6/7
-  "Thank You & Q/A",      // 7/7
+  "HKSTP Pitch",          // 1/6
+  "Innovation",           // 2/6
+  "Team Building",        // 3/6
+  "Market Analysis",      // 4/6
+  "Roadmap",              // 5/6
+  "Thank You & Q/A",      // 6/6
 ];
 
 function App() {
@@ -32,28 +29,39 @@ function App() {
   });
   const isPortrait = useMediaQuery('(orientation: portrait)');
 
-  const CurrentSlideComponent = slideComponents[slideIndex];
-
-  return (
-    <>
-      {isPortrait && (
+  if (isPortrait) {
+    return (
+      <>
         <div className="orientation-prompt">
           <p>请旋转您的设备以获得最佳浏览体验</p>
         </div>
-      )}
-      <div className={`stage-wrap ${slideIndex === 0 ? 'cover-mode' : ''}`}>
-        <div className="stage">
-          <div className="slides-container-landscape" data-testid="landscape-container">
-            <CurrentSlideComponent step={stepIndex} className="active" />
-          </div>
-          <Footer
-            slideIndex={slideIndex}
-            totalSlides={slideComponents.length}
-            title={slideTitles[slideIndex]}
-          />
+        {/* In portrait mode, we render all slides for vertical scrolling */}
+        <div className="slides-container-portrait portrait-scroll" data-testid="portrait-container">
+          {slideComponents.map((SlideComponent, index) => (
+            <div key={index} className="slide slide-wrapper-portrait">
+              <SlideComponent step={0} className="active" />
+            </div>
+          ))}
         </div>
+      </>
+    );
+  }
+
+  const CurrentSlideComponent = slideComponents[slideIndex];
+
+  return (
+    <div className={`stage-wrap ${slideIndex === 0 ? 'cover-mode' : ''}`}>
+      <div className="stage">
+        <div className="slides-container-landscape" data-testid="landscape-container">
+          <CurrentSlideComponent step={stepIndex} className="active" />
+        </div>
+        <Footer
+          slideIndex={slideIndex}
+          totalSlides={slideComponents.length}
+          title={slideTitles[slideIndex]}
+        />
       </div>
-    </>
+    </div>
   );
 }
 
