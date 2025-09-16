@@ -14,12 +14,12 @@ const slideComponents = [
 
 const stepsPerSlide = [1, 4, 3, 3, 1, 1];
 const slideTitles = [
-  "HKSTP Pitch",          // 1/6
-  "Innovation",           // 2/6
-  "Team Building",        // 3/6
-  "Market Analysis",      // 4/6
-  "Roadmap",              // 5/6
-  "Thank You & Q/A",      // 6/6
+  "HKSTP Pitch",                      // 1/6
+  "Innovativeness",                   // 2/6
+  "Team Competency",                  // 3/6
+  "Business Development Potential",   // 4/6
+  "Research Development Plan",        // 5/6
+  "Thank You & Q/A",                  // 6/6
 ];
 
 function App() {
