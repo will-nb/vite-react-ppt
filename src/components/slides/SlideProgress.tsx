@@ -100,7 +100,7 @@ const SlideProgress: React.FC<SlideProps> = ({ step = 0, className = '' }) => {
   };
 
   return (
-    <div className={`slide ${className}`} data-testid="slide-progress-container">
+    <div className={`slide ${styles.slideProgressContainer} ${className}`} data-testid="slide-progress-container">
       <div className="slide-content">{renderContent()}</div>
     </div>
   );

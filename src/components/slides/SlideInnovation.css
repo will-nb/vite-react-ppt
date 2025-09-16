@@ -74,6 +74,10 @@
   }
 }
 
+.innovation {
+  background-color: #111827; /* Force a dark background */
+}
+
 .innovation .slide-content {
   display: flex;
   justify-content: center;
@@ -118,7 +122,7 @@
 .text-content p {
   font-size: 1.5rem;
   line-height: 1.6;
-  color: #ccc;
+  color: #D1D5DB; /* A bright, readable light gray for body text */
 }
 
 .visual-content {
